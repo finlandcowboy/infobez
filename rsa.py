@@ -5,18 +5,29 @@ import random
 
 def RSA(p, q):
     n = p * q
+    print(f'{n = }')
     z = (p - 1) * (q - 1)
+    print(f'{z = }')
     e = 0
+    print('Гененируем такое число e, что наибольший общий делитель e и z = 1...')
     for i in range(2, z):
+        print(f'gcd = {math.gcd(i, z)}')
         if math.gcd(i, z) == 1:
             e = i
             break
+        
+    print(f'{e = }')
     d = 0
+    
+    print(f'Генерируем такое число d...')
     for i in range(z):
         x = 1+(i*z)
         if x % e == 0:
             d = int(x / e)
             break
+    
+    print(f'{d = }')
+    
     return [e, n], [d, n]
 
 
@@ -29,8 +40,10 @@ def encrypt(message, public_key):
 
 def decrypt(message, private_key):
     decrypt_message = ''
+    print('Decryption...')
     for m in message:
         decrypt_message += chr(pow(m, private_key[0]) % private_key[1])
+        print(f'Initial message: {m}\tDecrypted message: {decrypt_message}')
     return decrypt_message
 
 
@@ -44,5 +57,5 @@ print('Public Key:', ", ".join(list(map(str, public_key))))
 
 print('Private Key:', ", ".join(list(map(str, private_key))))
 
-msg = encrypt('Hi, Bob! asd', public_key)
+msg = encrypt('Hi, Bob! How are you? Who are you?', public_key)
 print('Message:', decrypt(msg, private_key))
