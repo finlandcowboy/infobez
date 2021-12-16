@@ -10,14 +10,24 @@
 git clone https://github.com/finlandcowboy/infobez
 ```
 
-## Usage
+## Miller rabin test
 
 ```sh
-python3 lr1.py 
-python3 lr2.py 
-python3 lr3.py 
-python3 lr4.py 
+python3 miller_rabin.py
 ```
+
+## Diffie-Hellman Algorithm
+
+```sh
+python3 diffie_hellman.py
+```
+
+## Caesar cipher with word as key
+
+```sh
+python3 caesar_word.py
+```
+
 
 ## Author
 
