@@ -15,19 +15,19 @@ def RSA(p, q):
         if math.gcd(i, z) == 1:
             e = i
             break
-        
+
     print(f'{e = }')
     d = 0
-    
+
     print(f'Генерируем такое число d...')
     for i in range(z):
         x = 1+(i*z)
         if x % e == 0:
             d = int(x / e)
             break
-    
+
     print(f'{d = }')
-    
+
     return [e, n], [d, n]
 
 
@@ -47,6 +47,9 @@ def decrypt(message, private_key):
     return decrypt_message
 
 
+message = input()
+
+
 p = primesieve.nth_prime(random.randint(50, 150))
 q = primesieve.nth_prime(random.randint(50, 150))
 
@@ -57,5 +60,6 @@ print('Public Key:', ", ".join(list(map(str, public_key))))
 
 print('Private Key:', ", ".join(list(map(str, private_key))))
 
-msg = encrypt('Hi, Bob! How are you? Who are you?', public_key)
+
+msg = encrypt(message, public_key)
 print('Message:', decrypt(msg, private_key))
