@@ -1,15 +1,27 @@
 import random
+import miller_rabin
 
 
-if __name__=='__main__':
-    P = 29
-    G = 9
-    alice_key = 4
-    bob_key = 3
-    
-    gen_key_x = int(pow(G, alice_key, P))
-    gen_key_y = int(pow(G, bob_key, P))
-    
-    ka = int(pow(gen_key_y,alice_key,P))
-    kb = int(pow(gen_key_x,bob_key,P))
-    print(ka, kb)
+class DiffieHellman:
+    def __init__(self, secret_num, p, g):
+        self.p = p
+        self.g = g
+        self.secret_num = secret_num
+        self.key = pow(g, secret_num) % p
+
+    def get_key(self):
+        return self.key
+
+    def get_secret_key(self, companion_key):
+        return pow(companion_key, self.secret_num) % self.p
+
+
+
+
+
+g = miller_rabin.generatePrime()
+p = miller_rabin.generatePrime()
+Alisa = DiffieHellman(random.randint(1, 500), p, g)
+Bob = DiffieHellman(random.randint(1, 500), p, g)
+print('Alisa key:', Alisa.get_secret_key(Alisa.get_key()))
+print('Bob key:', Bob.get_secret_key(Bob.get_key()))

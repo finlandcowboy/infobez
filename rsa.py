@@ -34,15 +34,16 @@ def RSA(p, q):
 def encrypt(message, public_key):
     encrypt_message = []
     for m in message:
-        encrypt_message.append(pow(ord(m), public_key[0]) % public_key[1])
+        encrypt_message.append(pow(ord(m), public_key[0], public_key[1]))
+    print(f'\nEncrypted message: ', "".join(list(map(str,encrypt_message))))
     return encrypt_message
 
 
 def decrypt(message, private_key):
     decrypt_message = ''
-    print('Decryption...')
+    print('\nDecryption...')
     for m in message:
-        decrypt_message += chr(pow(m, private_key[0]) % private_key[1])
+        decrypt_message += chr(pow(m, private_key[0], private_key[1]))
         print(f'Initial message: {m}\tDecrypted message: {decrypt_message}')
     return decrypt_message
 

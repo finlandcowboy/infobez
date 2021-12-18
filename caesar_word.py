@@ -54,10 +54,10 @@ class Caesar():
         
         return translated_message
 
-message = 'hi mom im here how are you'
-key = 'wowshit'
+# message = 'hi mom im here how are you'
+# key = 'wowshit'
 
-c = Caesar(message, key)
+# c = Caesar(message, key)
 
-print(c.encrypt())
-print(c.decrypt())
+# print(c.encrypt())
+# print(c.decrypt())

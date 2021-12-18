@@ -66,10 +66,19 @@ def isPrime(n, k):
 
 	return True
 
+
+def generatePrime():
+    a = random.randint(1,100)
+    while(True):
+        a = random.randint(200,500)
+        if isPrime(a, k=40):
+            return a
+
 # number = int(input('Введите число: '))
 # k = int(input('Введите количество итерация теста Миллера. Рекомендованное значение: 40\nЗначение:'))
 
 # print(isPrime(number,k))
+
 
 
 # print("All primes smaller than 100: ")

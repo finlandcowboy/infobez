@@ -41,8 +41,9 @@ list_of_bigrams_mono = remove_chars_from_text(list_of_bigrams_mono, not_chars).s
 from caesar_word import Caesar
 
 
-caesar = Caesar(message=text, key=key)
-new_text = caesar.encrypt()
+c = Caesar(message=text, key=key)
+new_text = c.encrypt()
+print(new_text)
 new_text = (re.sub('[a-z|A-Z|A-Z|a-z]', '', text)).lower()
 
         
