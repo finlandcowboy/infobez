@@ -21,7 +21,7 @@ def generator_mod(N):
 
 
 
-def SRP(passwd, I, k):
+def SRP(passwd, I, k=3):
     
     '''
     Args: 
@@ -59,6 +59,7 @@ def SRP(passwd, I, k):
     #! x = H(S,p)
     print(f'x= {x}\t pass = {passwd}')
     
+    #! v - password verifier
     v = pow(g,x,N)
     print(f'V = g^x mod N = {v}')
     
@@ -79,6 +80,9 @@ def SRP(passwd, I, k):
     B = (k * v + pow(g,rand_b,N) % N)
     
     print(f'B = {B}')
+    
+    if B == 0:
+        return False
     
     print('2. Затем сервер отсылает клиенту s и B\n' + 
           '4. Затем обе стороны вычисляют u = H(A,B)'
@@ -105,7 +109,7 @@ def SRP(passwd, I, k):
     
     if k_serv != k_cl:
         print(f'ERROR: K клиента и K сервера не совпадают!')
-        return 'Failed to encrypt'
+        return False
             
     print(f'K клиента и K сервера совпадают и равно = {k_serv}')
         

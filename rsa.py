@@ -16,6 +16,7 @@ def RSA(p, q):
             e = i
             break
 
+
     print(f'{e = }')
     d = 0
 
@@ -56,6 +57,14 @@ q = primesieve.nth_prime(random.randint(50, 150))
 
 public_key, private_key = RSA(p, q)
 
+p2 = primesieve.nth_prime(random.randint(50, 150))
+q2 = primesieve.nth_prime(random.randint(50, 150))
+
+public_key2, private_key2 = RSA(p2, q2)
+
+print('Public Key:', ", ".join(list(map(str, public_key))))
+
+print('Private Key:', ", ".join(list(map(str, private_key))))
 
 print('Public Key:', ", ".join(list(map(str, public_key))))
 

@@ -74,16 +74,8 @@ def generatePrime():
         if isPrime(a, k=40):
             return a
 
-# number = int(input('Введите число: '))
-# k = int(input('Введите количество итерация теста Миллера. Рекомендованное значение: 40\nЗначение:'))
+number = int(input('Введите число: '))
+k = int(input('Введите количество итерация теста Миллера. Рекомендованное значение: 40\nЗначение:'))
 
-# print(isPrime(number,k))
-
-
-
-# print("All primes smaller than 100: ")
-# for n in range(1, 1000):
-# 	if (isPrime(n, k)):
-# 		print(n, end=" ")
-
-# # This code is contributed by mits
+print(isPrime(number,k))
+# This code is contributed by mits

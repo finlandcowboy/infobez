@@ -1,63 +1,47 @@
-class Caesar():
-    message: str = None
-    key: str = None
 
-    def __init__(self, message: str = "", key: str = ""):
-        self.message = message
-        self.key = key
-        self._letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzабвгдеёжзикламнопрстуфхцчщъыьэюяАБВГДЕЁЖЗИКЛАМНОПРСТУФХЦЧЩЪЫЬЭЮЯ"
-        self.index = 0
+#* Вводим смещение (offset) и ключ (key)
+offset = 3
+key = 'приветик'
 
-    def encrypt(self):
-        translated_message = ''
-        for char in self.message:
-            if char in self._letters:
-                number = self._letters.find(char)
-                number += (ord(self.key[self.index]))
 
-                self.index += 1
-                self.index %= len(key)
+#* Записываем в result главу Войны и Мира
+with open("warAndPeace.txt", encoding='utf-8') as text_file:
+    result = ''
+    for s in text_file:
+        result += s
 
-                if number >= len(self._letters):
-                    number -= len(self._letters)
 
-                elif number < 0:
-                    number += len(self._letters)
+#* Генерируем русский алфавит
+a = ord('а')
+alphabet = ''.join([chr(i) for i in range(a, a+32)])
 
-                translated_message += self._letters[number]
+print('Алфавит:', alphabet, '\n')
 
-        else:
-            translated_message += char
-        
-        return translated_message 
+#* Делаем ключ неуязвимым в пробелам
+key = key.replace(' ', '')
 
-    def decrypt(self):
-        translated_message = ''
-        for char in self.message:
-            if char in self._letters:
-                number = self._letters.find(char)
-                number -= (ord(self.key[self.index]))
+#* удаляем из алфавита символы из ключа и добавляем вначало ключ на каждой итерации
+for sym in key:
+    alphabet = alphabet.replace(sym, '')
+    alphabet = key + alphabet
 
-                self.index += 1
-                self.index %= len(key)
+#* Смещаем алфавит на offset
+for i in range(offset):
+    alphabet = alphabet[-1] + alphabet[:-1]
 
-                if number >= len(self._letters):
-                    number -= len(self._letters)
+print('Новый алфавит:', alphabet, '\n')
 
-                elif number < 0:
-                    number += len(self._letters)
+text = ''
 
-                translated_message += self._letters[number]
+#* Если символ "алфавитный", то вычисляем его значение
+for symbol in result:
+    if symbol.isalpha():
+        #* Вычисляем символ в алфавите
+        text += alphabet[(ord(symbol) - 224) % 32]
+    else:
+        #* Просто добавляем символ
+        text += symbol
 
-            else:
-                translated_message
-        
-        return translated_message
 
-# message = 'hi mom im here how are you'
-# key = 'wowshit'
-
-# c = Caesar(message, key)
-
-# print(c.encrypt())
-# print(c.decrypt())
+if __name__ == "__main__":
+    print(f"Результат шифрации\n{text}")
